@@ -501,8 +501,6 @@ noremap <silent> <C-X>r :GitGutterRevertHunk<cr>
 noremap <silent> <C-X>s :GitGutterStageHunk<cr>
 
 noremap <silent> <C-Y> "ap
-"noremap <silent> <C-B> :pop<CR>
-"inoremap <silent> <C-B> <C-O>:pop<CR>
 noremap <silent> <C-L> n
 noremap <silent> <C-P> N
 noremap <silent> <C-N> n
@@ -511,10 +509,7 @@ inoremap <silent> <C-P> <C-O>N
 inoremap <silent> <C-N> <C-O>n
 "noremap <silent> <C-[> :ts<CR>
 noremap <F8> :TlistToggle<CR>
-"noremap <TAB> ==j
 inoremap <silent> <ESC>/ <C-P>
-"nmap <F3> :Rgrep<CR>
-"inoremap <F3> <C-O>:Rgrep<CR>
 "map <F2> :exec "vimgrep /" . expand("<cword>") . "/j **/*." . expand("%:e") <Bar>  cw<CR>
 nmap 0 :ts<CR>
 nmap ' :cn<CR>
