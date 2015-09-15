@@ -1,3 +1,6 @@
+"
+" $ ln -s ~/.vim/ ~/.vimrc
+"
 " All system-wide defaults are set in $VIMRUNTIME/debian.vim (usually just
 " /usr/share/vim/vimcurrent/debian.vim) and sourced by the call to :runtime
 " you can find below.  If you wish to change any of those settings, you should
@@ -8,18 +11,45 @@
 
 " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 " Setting up Vundle - the vim plugin bundler
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-if !filereadable(vundle_readme)
-  echo "Installing Vundle.."
-  echo ""
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-  let iCanHazVundle=0
-endif
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+    let iCanHazVundle=1
+    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+    if !filereadable(vundle_readme)
+        echo "Installing Vundle.."
+        echo ""
+        silent !mkdir -p ~/.vim/bundle
+        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+        let iCanHazVundle=0
+    endif
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
+    "Add your bundles here
+	" original repos on github
+	"Bundle 'Lokaltog/vim-easymotion'
+	Bundle 'airblade/vim-gitgutter'
+	Bundle 'jlanzarotta/bufexplorer'
+	"Bundle 'tpope/vim-fugitive'
+	"Bundle 'bling/vim-airline'
+	"Bundle 'scrooloose/nerdtree'
+	"Bundle 'tomtom/tcomment_vim'
+	"Bundle 'tomtom/tlib_vim'
+	"Bundle 'marcweber/vim-addon-mw-utils'
+	"Bundle 'garbas/vim-snipmate'
+	"Bundle 'sjl/gundo.vim'
+	"Plugin 'NLKNguyen/papercolor-theme'
+	"Plugin 'mrtazz/DoxygenToolkit.vim'
+	"Plugin 'ajh17/Spacegray.vim'
+	"Plugin 'will133/vim-dirdiff'
+	"Plugin 'chrisbra/Colorizer'
+	"Plugin '1995parham/vim-tcpdump'
+	"Plugin 'vim-multiple-cursors'
+	"Plugin 'lervag/vimtex'
+    "...All your other bundles...
+    if iCanHazVundle == 0
+        echo "Installing Bundles, please ignore key map error messages"
+        echo ""
+        :BundleInstall
+    endif
+" Setting up Vundle - the vim plugin bundler end
 
 " let Vundle manage Vundle
 " required!
@@ -27,26 +57,6 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 "
-" original repos on github
-"Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'airblade/vim-gitgutter'
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'bling/vim-airline'
-"Bundle 'scrooloose/nerdtree'
-"Bundle 'tomtom/tcomment_vim'
-"Bundle 'tomtom/tlib_vim'
-"Bundle 'marcweber/vim-addon-mw-utils'
-"Bundle 'garbas/vim-snipmate'
-"Bundle 'sjl/gundo.vim'
-"Plugin 'NLKNguyen/papercolor-theme'
-"Plugin 'mrtazz/DoxygenToolkit.vim'
-"Plugin 'ajh17/Spacegray.vim'
-"Plugin 'will133/vim-dirdiff'
-"Plugin 'chrisbra/Colorizer'
-"Plugin '1995parham/vim-tcpdump'
-"Plugin 'vim-multiple-cursors'
-"Plugin 'lervag/vimtex'
-
 " This line should not be removed as it ensures that various options are
 " properly set to work with the Vim-related packages available in Debian.
 runtime! debian.vim
