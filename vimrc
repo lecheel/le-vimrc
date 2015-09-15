@@ -9,6 +9,9 @@
 " make changes after sourcing debian.vim since it alters the value of the
 " 'compatible' option.
 
+set nocompatible    	"required
+filetype off		"required
+
 " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
@@ -50,7 +53,9 @@
         echo ""
         :BundleInstall
     endif
+    call vundle#end()
 " Setting up Vundle - the vim plugin bundler end
+filetype plugin indent on	"required
 
 " Vim5 and later versions support syntax highlighting. Uncommenting the
 " following enables syntax highlighting by default.
@@ -60,7 +65,7 @@ endif
 
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
-"set background=dark
+set background=dark
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -101,11 +106,10 @@ let loaded_matchparen = 1
 set t_Co=256
 set number
 set relativenumber
-set background=dark
-colorscheme PaperColor
 set laststatus=2
 set noeb vb t_vb=
 set backspace=2
+colorscheme PaperColor
 
 if &diff
     set background=dark
