@@ -6,9 +6,13 @@
 [tips] lot of people ask there have BRiEF Compatible Ediot for Linux, CRiSP is, how about TsePRO ... all PC DOS editor is heavy Alt/Meta key I founded FTE is good using ncurses and other console library simple and open source ViM/Emacs are not friendly coming from windows. but every editor have the interest point can not be clone (size/features/keybinding/dialogBox...) and work flow.
 
 [vim] Implement feature near 10 yrs now I'm in for daily using because the powerline(airline) ??  
+[neovim] vim refactor
 
-[emacs-evil] haha great work I've vim+emacs+... but why rectangle-operation can not like evil mode "C-v" for visual select ??
+[le-evil] haha great work I've vim+emacs+... but why rectangle-operation can not like evil mode "C-v" for visual select ??
 
-[le-vim] https://github.com/lecheel/le-vimrc
-[macro] https://github.com/lecheel/vgrep
-
+[le-vim]:https://github.com/lecheel/le-vimrc
+[macro]:https://github.com/lecheel/vgrep
+[tips]:
+[vim]:https://github.com/vim/vim
+[neovim]:https://github.com/neovim/neovim
+[le-evil]:
