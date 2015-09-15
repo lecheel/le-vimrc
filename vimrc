@@ -24,18 +24,18 @@
     call vundle#rc()
     "Add your bundles here
 	" original repos on github
-	"Bundle 'Lokaltog/vim-easymotion'
+	Bundle 'Lokaltog/vim-easymotion'
 	Bundle 'airblade/vim-gitgutter'
 	Bundle 'jlanzarotta/bufexplorer'
-	"Bundle 'tpope/vim-fugitive'
-	"Bundle 'bling/vim-airline'
-	"Bundle 'scrooloose/nerdtree'
+	Bundle 'tpope/vim-fugitive'
+	Bundle 'bling/vim-airline'
+	Bundle 'scrooloose/nerdtree'
 	"Bundle 'tomtom/tcomment_vim'
 	"Bundle 'tomtom/tlib_vim'
 	"Bundle 'marcweber/vim-addon-mw-utils'
 	"Bundle 'garbas/vim-snipmate'
 	"Bundle 'sjl/gundo.vim'
-	"Plugin 'NLKNguyen/papercolor-theme'
+	Plugin 'NLKNguyen/papercolor-theme'
 	"Plugin 'mrtazz/DoxygenToolkit.vim'
 	"Plugin 'ajh17/Spacegray.vim'
 	"Plugin 'will133/vim-dirdiff'
@@ -111,19 +111,17 @@ set t_Co=256
 set number
 set relativenumber
 set background=dark
-"colorscheme PaperColor
+colorscheme PaperColor
 set laststatus=2
 set noeb vb t_vb=
 set backspace=2
 
 if &diff
-	set background=dark
-        colorscheme peaksea
+    set background=dark
+    colorscheme peaksea
 else
-"  colorscheme molokai
-"   colorscheme ron
-" colorscheme default
-"colorscheme PaperColor
+    "colorscheme default
+    colorscheme PaperColor
 endif  
 
 
@@ -131,18 +129,10 @@ endif
 "set cindent
 "set equalprg=astyle
 set shiftwidth=4
-"set tags=/work/beehd/pd/tags;/work/UI1/tags
-"set tags=./tags;
-"set tags=/work/opt/3c_sdc/CMCC_Gen2B_TI_OMAP4_4AJ.1.1/tags
-"set tags=/work/SI/3c_sdc/Gen2B_NV_T30S_16R7/tags
 
 "vimgrep
 "map <C-F>viwy:vimgrep /\<"\>/ **/*.[ch]pp
 "noremap <F12> :cnext<CR>
-
-" NERDTree mappings
-nnoremap <silent> <F1> :NERDTreeToggle <cr>
-inoremap <silent> <F1> <Esc>:NERDTreeToggle <cr>
 
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
@@ -255,18 +245,18 @@ nmap <silent> <Leader>hs :GitGutterStageHunk<cr>
 nmap <silent> <Leader>hr :GitGutterRevertHunk<cr>
 nmap <silent> <Leader>hp :GitGutterPreviewHunk<cr>
 
-MapToggle <f4> hlsearch
-set pastetoggle=<f5>
+" NERDTree mappings
+nnoremap <silent> <F1> :NERDTreeToggle <cr>
+inoremap <silent> <F1> <Esc>:NERDTreeToggle <cr>
 
-"nnoremap <silent> <F10> :Mru <cr>
+MapToggle <F4> hlsearch
+set pastetoggle=<F5>
+
 nmap <F10> :TagbarToggle<CR> 
-map <F3> :exec 'cs find e <C-R>=expand("<cword>")<CR>'<CR>
-map <F2> :exec 'cs find d <C-R>=expand("<cword>")<CR>'<CR>
-noremap <leader>s yiw:cs find s <C-R>=expand("<cword>")<CR><CR>
+
 noremap <leader>tw :call ToggleWrap()<CR>
-map <F4> :exec 'cs find c <C-R>=expand("<cword>")<CR>'<CR>
-noremap <leader>= :call Toggle_hlsearch()<cr>
-noremap <leader>t :TagbarToggle<cr>
-"map <SPACE> <Plug>(easymotion-prefix)
+noremap <leader>th :call Toggle_hlsearch()<cr>
+noremap <leader>tt :TagbarToggle<cr>
+
 map <SPACE> <Plug>(easymotion-s2)
 nmap s <Plug>(easymotion-s)
