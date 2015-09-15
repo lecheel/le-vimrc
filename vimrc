@@ -35,14 +35,15 @@
 	Bundle 'marcweber/vim-addon-mw-utils'
 	"Bundle 'garbas/vim-snipmate'
 	Bundle 'sjl/gundo.vim'
-	Plugin 'NLKNguyen/papercolor-theme'
-	Plugin 'mrtazz/DoxygenToolkit.vim'
-	Plugin 'ajh17/Spacegray.vim'
-	Plugin 'will133/vim-dirdiff'
-	Plugin 'chrisbra/Colorizer'
-	Plugin '1995parham/vim-tcpdump'
-	Plugin 'vim-multiple-cursors'
-	Plugin 'lervag/vimtex'
+	Bundle 'NLKNguyen/papercolor-theme'
+	Bundle 'mrtazz/DoxygenToolkit.vim'
+	Bundle 'ajh17/Spacegray.vim'
+	Bundle 'will133/vim-dirdiff'
+	Bundle 'chrisbra/Colorizer'
+	Bundle '1995parham/vim-tcpdump'
+	Bundle 'vim-multiple-cursors'
+	Bundle 'lervag/vimtex'
+	Bundle 'vim-scripts/taglist.vim'
     "...All your other bundles...
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
