@@ -497,8 +497,8 @@ noremap <silent> <C-X>n :GitGutterNextHunk<cr>
 noremap <silent> <C-X>p :GitGutterPrevHunk<cr>
 inoremap <silent> <C-X>n <C-O>:GitGutterNextHunk<cr>
 inoremap <silent> <C-X>p <C-O>:GitGutterPrevHunk<cr>
-noremap <silent> <C-X>r :GitGutterRevertHunk<cr>
-noremap <silent> <C-X>s :GitGutterStageHunk<cr>
+noremap <silent> <C-X>vr :GitGutterRevertHunk<cr>
+noremap <silent> <C-X>vs :GitGutterStageHunk<cr>
 
 noremap <silent> <C-Y> "ap
 noremap <silent> <C-L> n

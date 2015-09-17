@@ -36,6 +36,8 @@ filetype off		"required
 	Bundle 'tomtom/tcomment_vim'
 	Bundle 'tomtom/tlib_vim'
 	Bundle 'marcweber/vim-addon-mw-utils'
+	Bundle 'majutsushi/tagbar'
+	Bundle 'kien/rainbow_parentheses.vim'
 	"Bundle 'garbas/vim-snipmate'
 	Bundle 'sjl/gundo.vim'
 	Bundle 'NLKNguyen/papercolor-theme'
@@ -53,7 +55,6 @@ filetype off		"required
         echo ""
         :BundleInstall
     endif
-    call vundle#end()
 " Setting up Vundle - the vim plugin bundler end
 filetype plugin indent on	"required
 
@@ -79,6 +80,8 @@ au BufRead,BufNewFile *.logcat set filetype=logcat
 au BufRead,BufNewFile *.grp set filetype=grp
 au BufRead,BufNewFile *.log set filetype=messages
 au BufRead,BufNewFile *.cr set filetype=c
+au Filetype python set expandtab
+au Filetype make set expandtab
 au Filetype python set ts=4 sw=4 et
 
 " ack
@@ -102,6 +105,7 @@ endif
 "set mouse=a		" Enable mouse usage (all modes)
 set ignorecase incsearch
 set noshowmatch
+"set expandtab
 let loaded_matchparen = 1
 set t_Co=256
 set number
@@ -109,11 +113,16 @@ set relativenumber
 set laststatus=2
 set noeb vb t_vb=
 set backspace=2
+set nobackup
+set noswapfile
+set nowrapscan
+
+let mapleader=","
+
 colorscheme PaperColor
 
 if &diff
     set background=dark
-    colorscheme peaksea
 else
     "colorscheme default
     colorscheme PaperColor
@@ -133,19 +142,6 @@ set shiftwidth=4
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
 endif
-
-function MapAllModes(key, cmd)
-    let str = a:cmd.'<cr>'
-    exec 'noremap <silent> '.a:key.' '.str
-    exec 'noremap! <silent> '.a:key.' <c-o>'.str
-endfunction
-
-function MapToggle(key, opt)
-    call MapAllModes(a:key, ':set '.a:opt.'!')
-endfunction
-
-command -nargs=+ MapAllModes call MapAllModes(<f-args>)
-command -nargs=+ MapToggle call MapToggle(<f-args>)
 
 autocmd FileType c,cpp,java,scala let b:comment_leader = '// '
 autocmd FileType sh,ruby,python   let b:comment_leader = '# '
@@ -184,10 +180,6 @@ elseif $TAGFILE != ""
     set tags=$TAGFILE
 endif
 
-function! Toggle_hlsearch()
-	MapToggle <leader>= hlsearch
-endfunction
-
 function! VisualSelection(direction) range
     let l:saved_reg = @"
     execute "normal! vgvy"
@@ -209,7 +201,7 @@ function! VisualSelection(direction) range
     let @" = l:saved_reg
 endfunction
 
-function ToggleWrap()
+function! ToggleWrap()
  if (&wrap == 1)
    set nowrap
  else
@@ -244,14 +236,23 @@ nmap <silent> <Leader>hp :GitGutterPreviewHunk<cr>
 nnoremap <silent> <F1> :NERDTreeToggle <cr>
 inoremap <silent> <F1> <Esc>:NERDTreeToggle <cr>
 
-MapToggle <F4> hlsearch
+noremap <F4> :set hlsearch! hlsearch?<CR>
 set pastetoggle=<F5>
 
 nmap <F10> :TagbarToggle<CR> 
 
+map <F3> :exec 'cs find d <C-R>=expand("<cword>")<CR>'<CR>
+map <F2> :exec 'cs find c <C-R>=expand("<cword>")<CR>'<CR>
+
+"
+" Toggle .....
+"
 noremap <leader>tw :call ToggleWrap()<CR>
-noremap <leader>th :call Toggle_hlsearch()<cr>
+noremap <leader>th :set hlsearch! hlsearch?<CR>
 noremap <leader>tt :TagbarToggle<cr>
 
+nmap <leader>l <Plug>(easymotion-lineanywhere)
+nmap <silent> ,/ :nohlsearch<CR>
+nnoremap <leader>w <C-w>v<C-w>l
+
 map <SPACE> <Plug>(easymotion-s2)
-nmap s <Plug>(easymotion-s)
