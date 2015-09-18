@@ -1,7 +1,11 @@
 # le-vim
 
 # install
-* git clone https://github.com/lecheel/le-vimrc ~/.vim
+```
+$ git clone https://github.com/lecheel/le-vimrc ~/.vim
+$ ln -s ~/.vim/vimrc ~/.vimrc
+$ vim
+```
 
 # about
 * [le-vim] Early 1989 people using PE2, I used an editor QE (Qedit) more advance P->Q  :-), later TSE Pro, which is faster highly customizable via SAL. our colleague using BRiEF for BiOS development so I try to learn and clone the features on TsePRO (atags/vgrep...) meanwhile put more feature on BRiEF I'm few use on this editor. I'm enjoy for those porting lot of potential have been port (Emacs/ViM/JED/FED/CRiSP/Epsilon/MultiEdit/Boxer/Aurora/Jasspa...[macro]) finally using FTE as my fav editor when I moving to linux environment.
@@ -12,7 +16,7 @@
 
 * [neovim] vim refactor
 
-* [le-evil] le-evil haha great work I've vim+emacs+... but why rectangle-operation can not like evil mode "C-v" for visual select ??
+* [le-evil] le-evil haha great work I've vim+emacs+... 
 
 [le-vim]:https://github.com/lecheel/le-vimrc
 [macro]:https://github.com/lecheel/vgrep
