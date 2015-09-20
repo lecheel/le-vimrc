@@ -9,6 +9,7 @@
 " make changes after sourcing debian.vim since it alters the value of the
 " 'compatible' option.
 
+set encoding=utf-8
 set nocompatible    	"required
 filetype off		"required
 
@@ -165,6 +166,17 @@ let g:gitgutter_sign_modified_removed = '-*'
 let g:gitgutter_escape_grep = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+" patch for cygwin powerline font
+let g:airline_symbols = {}
+let g:airline_left_sep = "\u2b80" "use double quotes here
+let g:airline_left_alt_sep = "\u2b81"
+let g:airline_right_sep = "\u2b82"
+let g:airline_right_alt_sep = "\u2b83"
+let g:airline_symbols.branch = "\u2b60"
+let g:airline_symbols.readonly = "\u2b64"
+let g:airline_symbols.linenr = "\u2b61"
+
 
 "highlight clear SignColumn
 highlight Pmenu ctermfg=0 ctermbg=3
