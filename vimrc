@@ -37,6 +37,7 @@ filetype off		"required
 	Bundle 'tomtom/tlib_vim'
 	Bundle 'marcweber/vim-addon-mw-utils'
 	"Bundle 'garbas/vim-snipmate'
+	Bundle 'majutsushi/tagbar'
 	Bundle 'sjl/gundo.vim'
 	Bundle 'NLKNguyen/papercolor-theme'
 	Bundle 'mrtazz/DoxygenToolkit.vim'
@@ -109,6 +110,7 @@ set relativenumber
 set laststatus=2
 set noeb vb t_vb=
 set backspace=2
+set nowrapscan
 colorscheme PaperColor
 
 if &diff
