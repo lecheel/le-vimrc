@@ -9,7 +9,6 @@
 " make changes after sourcing debian.vim since it alters the value of the
 " 'compatible' option.
 
-set encoding=utf-8
 set nocompatible    	"required
 filetype off		"required
 
@@ -114,7 +113,6 @@ colorscheme PaperColor
 
 if &diff
     set background=dark
-    colorscheme peaksea
 else
     "colorscheme default
     colorscheme PaperColor
@@ -167,16 +165,16 @@ let g:gitgutter_escape_grep = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-" patch for cygwin powerline font
-let g:airline_symbols = {}
-let g:airline_left_sep = "\u2b80" "use double quotes here
-let g:airline_left_alt_sep = "\u2b81"
-let g:airline_right_sep = "\u2b82"
-let g:airline_right_alt_sep = "\u2b83"
-let g:airline_symbols.branch = "\u2b60"
-let g:airline_symbols.readonly = "\u2b64"
-let g:airline_symbols.linenr = "\u2b61"
-
+" patch for cygwin powerline font --->
+" let g:airline_symbols = {}
+" let g:airline_left_sep = "\u2b80" "use double quotes here
+" let g:airline_left_alt_sep = "\u2b81"
+" let g:airline_right_sep = "\u2b82"
+" let g:airline_right_alt_sep = "\u2b83"
+" let g:airline_symbols.branch = "\u2b60"
+" let g:airline_symbols.readonly = "\u2b64"
+" let g:airline_symbols.linenr = "\u2b61"
+" <-------- endof cygwin
 
 "highlight clear SignColumn
 highlight Pmenu ctermfg=0 ctermbg=3
@@ -244,6 +242,8 @@ noremap ]5 5gt
 noremap ]6 6gt 
 noremap ]7 7gt 
 
+let mapleader = ","
+
 nnoremap <silent> <F9> :GitGutterToggle <cr>
 inoremap <silent> <F9> <Esc>:GitGutterToggle <cr>
 nmap <silent> <Leader>]h :GitGutterNextHunk<cr>
@@ -264,6 +264,7 @@ nmap <F10> :TagbarToggle<CR>
 noremap <leader>tw :call ToggleWrap()<CR>
 noremap <leader>th :call Toggle_hlsearch()<cr>
 noremap <leader>tt :TagbarToggle<cr>
+noremap <leader>tn :set nonu relativenumber!<cr>
 
 map <SPACE> <Plug>(easymotion-s2)
 nmap s <Plug>(easymotion-s)
