@@ -39,7 +39,6 @@ filetype off		"required
 	Bundle 'majutsushi/tagbar'
 	Bundle 'kien/rainbow_parentheses.vim'
 	"Bundle 'garbas/vim-snipmate'
-	Bundle 'majutsushi/tagbar'
 	Bundle 'sjl/gundo.vim'
 	Bundle 'NLKNguyen/papercolor-theme'
 	Bundle 'mrtazz/DoxygenToolkit.vim'
