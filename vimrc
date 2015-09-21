@@ -39,6 +39,7 @@ filetype off		"required
 	Bundle 'majutsushi/tagbar'
 	Bundle 'kien/rainbow_parentheses.vim'
 	"Bundle 'garbas/vim-snipmate'
+	Bundle 'majutsushi/tagbar'
 	Bundle 'sjl/gundo.vim'
 	Bundle 'NLKNguyen/papercolor-theme'
 	Bundle 'mrtazz/DoxygenToolkit.vim'
@@ -162,6 +163,17 @@ let g:gitgutter_escape_grep = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
+" patch for cygwin powerline font --->
+" let g:airline_symbols = {}
+" let g:airline_left_sep = "\u2b80" "use double quotes here
+" let g:airline_left_alt_sep = "\u2b81"
+" let g:airline_right_sep = "\u2b82"
+" let g:airline_right_alt_sep = "\u2b83"
+" let g:airline_symbols.branch = "\u2b60"
+" let g:airline_symbols.readonly = "\u2b64"
+" let g:airline_symbols.linenr = "\u2b61"
+" <-------- endof cygwin
+
 "highlight clear SignColumn
 highlight Pmenu ctermfg=0 ctermbg=3
 highlight PmenuSel ctermfg=0 ctermbg=7
@@ -250,6 +262,7 @@ map <F2> :exec 'cs find c <C-R>=expand("<cword>")<CR>'<CR>
 noremap <leader>tw :call ToggleWrap()<CR>
 noremap <leader>th :set hlsearch! hlsearch?<CR>
 noremap <leader>tt :TagbarToggle<cr>
+noremap <leader>tn :set nonu relativenumber!<cr>
 
 nmap <leader>l <Plug>(easymotion-lineanywhere)
 nmap <silent> ,/ :nohlsearch<CR>

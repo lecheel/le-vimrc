@@ -2,8 +2,9 @@
 
 # install
 ```
-$ # Download package 
 $ git clone https://github.com/lecheel/le-vimrc ~/.vim
+$ ln -s ~/.vim/vimrc ~/.vimrc
+$ vim
 ```
 
 # about
@@ -15,7 +16,7 @@ $ git clone https://github.com/lecheel/le-vimrc ~/.vim
 
 * [neovim] vim refactor
 
-* [le-evil] le-evil haha great work I've vim+emacs+... but why rectangle-operation can not like evil mode "C-v" for visual select ??
+* [le-evil] le-evil haha great work I've vim+emacs+... 
 
 [le-vim]:https://github.com/lecheel/le-vimrc
 [macro]:https://github.com/lecheel/vgrep
