@@ -242,6 +242,10 @@ nmap <silent> <Leader>[h :GitGutterPrevHunk<cr>
 nmap <silent> <Leader>hs :GitGutterStageHunk<cr>
 nmap <silent> <Leader>hr :GitGutterRevertHunk<cr>
 nmap <silent> <Leader>hp :GitGutterPreviewHunk<cr>
+nmap <silent> <Leader>n  :GitGutterNextHunk<cr>
+nmap <silent> <Leader>p  :GitGutterPrevHunk<cr>
+nmap <silent> <Leader>d  :GitGutterPreviewHunk<cr>
+
 
 " NERDTree mappings
 nnoremap <silent> <F1> :NERDTreeToggle <cr>
