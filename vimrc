@@ -258,6 +258,7 @@ nmap <F10> :TagbarToggle<CR>
 
 map <F3> :exec 'cs find d <C-R>=expand("<cword>")<CR>'<CR>
 map <F2> :exec 'cs find c <C-R>=expand("<cword>")<CR>'<CR>
+nmap <leader>so :vimgrep <C-R><C-W> *<CR>
 
 "
 " Toggle .....
