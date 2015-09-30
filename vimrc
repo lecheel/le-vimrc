@@ -88,6 +88,12 @@ au Filetype python set expandtab
 au Filetype make set expandtab
 au Filetype python set ts=4 sw=4 et
 
+" in makefiles, don't expand tabs to spaces, since actual tab characters are
+" " needed, and have indentation at 8 chars to be sure that all indents are
+" tabs
+" " (despite the mappings later):
+autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
 " ack
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
