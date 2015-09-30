@@ -31,10 +31,13 @@ filetype off		"required
 	Bundle 'airblade/vim-gitgutter'
 	Bundle 'jlanzarotta/bufexplorer'
 	Bundle 'tpope/vim-fugitive'
+	Bundle 'tpope/vim-markdown'
+	Bundle 'Raimondi/delimitMate'
 	Bundle 'bling/vim-airline'
 	Bundle 'scrooloose/nerdtree'
 	Bundle 'tomtom/tcomment_vim'
 	Bundle 'tomtom/tlib_vim'
+	Bundle 'tpope/vim-surround'
 	Bundle 'marcweber/vim-addon-mw-utils'
 	Bundle 'majutsushi/tagbar'
 	Bundle 'kien/rainbow_parentheses.vim'
@@ -80,6 +83,7 @@ au BufRead,BufNewFile *.logcat set filetype=logcat
 au BufRead,BufNewFile *.grp set filetype=grp
 au BufRead,BufNewFile *.log set filetype=messages
 au BufRead,BufNewFile *.cr set filetype=c
+au BufNewFile,BufReadPost *.md set filetype=markdown
 au Filetype python set expandtab
 au Filetype make set expandtab
 au Filetype python set ts=4 sw=4 et
@@ -271,5 +275,12 @@ noremap <leader>tn :set nonu relativenumber!<cr>
 nmap <leader>l <Plug>(easymotion-lineanywhere)
 nmap <silent> ,/ :nohlsearch<CR>
 nnoremap <leader>w <C-w>v<C-w>l
+
+if &diff
+nmap Ok dp
+nmap Om do
+nmap Oo ]c
+nmap Oj [c
+endif
 
 map <SPACE> <Plug>(easymotion-s2)
