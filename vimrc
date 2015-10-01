@@ -289,4 +289,7 @@ nmap Oo ]c
 nmap Oj [c
 endif
 
+map Oo ]c
+map Oj [c
+
 map <SPACE> <Plug>(easymotion-s2)
