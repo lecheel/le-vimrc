@@ -41,6 +41,7 @@ filetype off		"required
 	Bundle 'marcweber/vim-addon-mw-utils'
 	Bundle 'majutsushi/tagbar'
 	Bundle 'kien/rainbow_parentheses.vim'
+	Bundle 'rking/ag.vim'
 	"Bundle 'garbas/vim-snipmate'
 	Bundle 'sjl/gundo.vim'
 	Bundle 'NLKNguyen/papercolor-theme'
@@ -84,6 +85,7 @@ au BufRead,BufNewFile *.grp set filetype=grp
 au BufRead,BufNewFile *.log set filetype=messages
 au BufRead,BufNewFile *.cr set filetype=c
 au BufNewFile,BufReadPost *.md set filetype=markdown
+au QuickFixCmdPost *grep* cwindow
 au Filetype python set expandtab
 au Filetype make set expandtab
 au Filetype python set ts=4 sw=4 et
@@ -96,6 +98,8 @@ autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
 " ack
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+let g:ag_working_path_mode="r"
+
 
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
@@ -280,6 +284,9 @@ noremap <leader>tn :set nonu relativenumber!<cr>
 
 nmap <leader>l <Plug>(easymotion-lineanywhere)
 nmap <silent> ,/ :nohlsearch<CR>
+
+command! -nargs=+ Ggs execute 'silent Ggrep!' <q-args>|cw|redraw!
+nmap <leader>gg :Ggs <C-R><C-W><CR><C-W>w
 nnoremap <leader>w <C-w>v<C-w>l
 
 if &diff
