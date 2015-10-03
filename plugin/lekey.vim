@@ -48,6 +48,22 @@ function! s:leOccur()
     exec 'vimgrep ' . pattern . ' ' . expand('%') | :copen |:cc
 endfunction!
 
+function! s:leGitGrep()
+	exec "mark g"
+    let pat = expand("<cword>")
+    let pattern = input("GitGrep (" . pat . "): ")
+    if pattern == ""
+	let pattern = pat
+	if pattern ==""
+	    echo "Cancelled.!"
+	    return
+	endif  
+    endif
+    let pat = expand("<cword>")
+    exec 'let @/ = "'.pattern.'"'
+    exec 'silent! Ggrep ' . pattern . ' ' | :copen |redraw!|:cc
+endfunction
+
 
 function! s:FindOccurences(method)
     if a:method == "auto"
@@ -589,6 +605,7 @@ exec "inoremap <unique> <silent> " . legoto_Key . " <C-O>:call <SID>leGotoLine()
 exec "nnoremap <unique> <silent> " . leJump . " :call <SID>BriefJumpMark()<CR>"
 exec "inoremap <unique> <silent> " . leJump . " <C-O>:call <SID>BriefJumpMark()<CR>"
 command! -nargs=* Adb call s:adbRemove()
+command! -nargs=* Ggr call s:leGitGrep()
 
 " vim:sw=4:tabstop=4
 

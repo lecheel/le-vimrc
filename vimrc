@@ -285,8 +285,9 @@ noremap <leader>tn :set nonu relativenumber!<cr>
 nmap <leader>l <Plug>(easymotion-lineanywhere)
 nmap <silent> ,/ :nohlsearch<CR>
 
-command! -nargs=+ Ggs execute 'silent Ggrep!' <q-args>|cw|redraw!
-nmap <leader>gg :Ggs <C-R><C-W><CR><C-W>w
+command! -nargs=+ Ggs execute 'silent Ggrep!' <q-args>|cw|redraw!|cc
+nmap <leader>gg :Ggs <C-R><C-W><CR>
+nmap <leader>gr :Ggr <CR>
 nnoremap <leader>w <C-w>v<C-w>l
 
 if &diff
