@@ -38,10 +38,12 @@ filetype off		"required
 	Bundle 'tomtom/tcomment_vim'
 	Bundle 'tomtom/tlib_vim'
 	Bundle 'tpope/vim-surround'
+	Bundle 'tpope/vim-unimpaired'
 	Bundle 'marcweber/vim-addon-mw-utils'
 	Bundle 'majutsushi/tagbar'
 	Bundle 'kien/rainbow_parentheses.vim'
 	Bundle 'rking/ag.vim'
+	"Plugin 'justinmk/vim-sneak'
 	"Bundle 'garbas/vim-snipmate'
 	Bundle 'sjl/gundo.vim'
 	Bundle 'NLKNguyen/papercolor-theme'
@@ -234,6 +236,12 @@ function! ToggleWrap()
  endif
 endfunction
 
+function! BundleRefresh()
+    exe "w"
+    exe "so %"
+    exe "BundleInstall"
+endfunction
+
 "EasyGrep Options
 let g:EasyGrepRecursive=1
 
@@ -281,13 +289,22 @@ noremap <leader>tw :call ToggleWrap()<CR>
 noremap <leader>th :set hlsearch! hlsearch?<CR>
 noremap <leader>tt :TagbarToggle<cr>
 noremap <leader>tn :set nonu relativenumber!<cr>
+noremap <leader>ii :call BundleRefresh()<CR>
 
 nmap <leader>l <Plug>(easymotion-lineanywhere)
 nmap <silent> ,/ :nohlsearch<CR>
 
+
+
 command! -nargs=+ Ggs execute 'silent Ggrep!' <q-args>|cw|redraw!|cc
 nmap <leader>gg :Ggs <C-R><C-W><CR>
 nmap <leader>gr :Ggr <CR>
+nmap <leader>gs :Gstatus <CR>
+nmap <leader>gd :Gdiff <CR>
+nmap <leader>gl :Glog %
+nmap <leader>gb :Git branch<Space>
+nmap <leader>br :Git branch<Space>
+nmap <leader>k  :bd<CR>
 nnoremap <leader>w <C-w>v<C-w>l
 
 if &diff
@@ -297,7 +314,8 @@ nmap Oo ]c
 nmap Oj [c
 endif
 
-map Oo ]c
-map Oj [c
+nmap Oo ]c
+nmap Oj [c
 
-map <SPACE> <Plug>(easymotion-s2)
+nmap <SPACE> <Plug>(easymotion-s)
+nmap s <Plug>(easymotion-s2)
