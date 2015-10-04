@@ -99,8 +99,12 @@ au Filetype python set ts=4 sw=4 et
 autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 
 " ack
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+"let g:ackprg='ack-grep -H --nocolor --nogroup --column'
 let g:ag_working_path_mode="r"
+let g:grepprg='grep -nH $*'
+"let g:grepprg='ack -H --nocolor --nogroup --column'
+nnoremap K :grep! <C-R><C-W> *<CR>:cc<CR>
+nnoremap " :Ag<CR>
 
 
 " Uncomment the following to have Vim load indentation rules and plugins
