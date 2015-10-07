@@ -44,6 +44,7 @@ filetype off		"required
 	Bundle 'kien/rainbow_parentheses.vim'
 	Bundle 'rking/ag.vim'
 	Bundle 'int3/vim-extradite'
+	Bundle 'gregsexton/gitv'
 	"Plugin 'justinmk/vim-sneak'
 	"Bundle 'garbas/vim-snipmate'
 	Bundle 'sjl/gundo.vim'
@@ -309,6 +310,7 @@ nmap <leader>gd :Gdiff <CR>
 nmap <leader>gl :Glog %
 nmap <leader>gb :Git branch<Space>
 nmap <leader>gf :Extradite<CR>
+nmap <leader>gv :Gitv<CR>
 nmap <leader>br :Git branch<Space>
 nmap <leader>k  :bd<CR>
 nnoremap <leader>w <C-w>v<C-w>l
