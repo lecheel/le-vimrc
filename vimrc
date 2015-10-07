@@ -43,6 +43,7 @@ filetype off		"required
 	Bundle 'majutsushi/tagbar'
 	Bundle 'kien/rainbow_parentheses.vim'
 	Bundle 'rking/ag.vim'
+	Bundle 'int3/vim-extradite'
 	"Plugin 'justinmk/vim-sneak'
 	"Bundle 'garbas/vim-snipmate'
 	Bundle 'sjl/gundo.vim'
@@ -307,6 +308,7 @@ nmap <leader>gs :Gstatus <CR>
 nmap <leader>gd :Gdiff <CR>
 nmap <leader>gl :Glog %
 nmap <leader>gb :Git branch<Space>
+nmap <leader>gf :Extradite<CR>
 nmap <leader>br :Git branch<Space>
 nmap <leader>k  :bd<CR>
 nnoremap <leader>w <C-w>v<C-w>l
@@ -323,3 +325,4 @@ nmap Oj [c
 
 nmap <SPACE> <Plug>(easymotion-s)
 nmap s <Plug>(easymotion-s2)
+nmap \| <C-W>H

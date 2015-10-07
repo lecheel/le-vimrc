@@ -522,6 +522,7 @@ noremap <silent> <C-W>k <C-W>c
 noremap <silent> <C-W>0 <C-W>c
 noremap <silent> <C-X>k :bd<CR>
 noremap <silent> <C-X>0 <C-W>c
+noremap <silent> <C-X>\| <C-W>H
 noremap <silent> <C-X>1 :only<CR>
 noremap <silent> <C-X>2 <C-W>i
 noremap <silent> <C-X>3 <C-W>v
