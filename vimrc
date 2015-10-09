@@ -45,6 +45,7 @@ filetype off		"required
 	Bundle 'rking/ag.vim'
 	Bundle 'int3/vim-extradite'
 	Bundle 'gregsexton/gitv'
+	Bundle 'mileszs/ack.vim'
 	"Plugin 'justinmk/vim-sneak'
 	"Bundle 'garbas/vim-snipmate'
 	Bundle 'sjl/gundo.vim'
@@ -294,7 +295,7 @@ nmap <leader>so :vimgrep <C-R><C-W> *<CR>
 noremap <leader>tw :call ToggleWrap()<CR>
 noremap <leader>th :set hlsearch! hlsearch?<CR>
 noremap <leader>tt :TagbarToggle<cr>
-noremap <leader>tn :set nonu relativenumber!<cr>
+noremap <leader>tl :set nonu relativenumber!<cr>
 noremap <leader>ii :call BundleRefresh()<CR>
 
 nmap <leader>l <Plug>(easymotion-lineanywhere)
