@@ -106,8 +106,9 @@ autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
 let g:ag_working_path_mode="r"
 let g:grepprg='grep -nH $*'
 "let g:grepprg='ack -H --nocolor --nogroup --column'
-nnoremap K :grep! <C-R><C-W> *<CR>:cc<CR>
-nnoremap " :Ag<CR>
+"nnoremap K :grep! <C-R><C-W> *<CR>:cc<CR>
+"nnoremap " :Ag<CR>
+set keywordprg=trans\ :zh-TW
 
 
 " Uncomment the following to have Vim load indentation rules and plugins
