@@ -514,8 +514,8 @@ noremap <silent> <C-]> :call <SID>leTAG()<CR>
 inoremap <silent> <C-]> <C-O>:call <SID>leTAG()<CR>
 noremap <silent> <F6> <C-W>w
 inoremap <silent> <F6> <C-O><C-W>w
-noremap <silent> <F7> *
-inoremap <silent> <F7> <C-O>*
+noremap <silent> <F7> %
+inoremap <silent> <F7> <C-O>%
 noremap <silent> <C-X>o <C-W>w
 inoremap <silent> <C-X>o <C-W>w
 noremap <silent> <C-W>k <C-W>c
