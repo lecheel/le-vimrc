@@ -421,6 +421,13 @@ function! s:adbRemove()
 
 endfunction
 
+function! s:RemoveCtrlM()
+	exec "mark o"
+	exe "1"
+	exe "%s///g"
+	normal `o
+endfunction
+
 function! s:BriefJumpMark()
     let mark = input("Jump to bookmark: ")
     if mark == ""
@@ -624,6 +631,7 @@ exec "inoremap <unique> <silent> " . legoto_Key . " <C-O>:call <SID>leGotoLine()
 exec "nnoremap <unique> <silent> " . leJump . " :call <SID>BriefJumpMark()<CR>"
 exec "inoremap <unique> <silent> " . leJump . " <C-O>:call <SID>BriefJumpMark()<CR>"
 command! -nargs=* Adb call s:adbRemove()
+command! -nargs=* RemoveCtrlM call s:RemoveCtrlM()
 command! -nargs=* Ggr call s:leGitGrep()
 
 " vim:sw=4:tabstop=4

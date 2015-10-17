@@ -110,6 +110,16 @@ let g:grepprg='grep -nH $*'
 "nnoremap " :Ag<CR>
 set keywordprg=trans\ :zh-TW
 
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8
+  setglobal fileencoding=utf-8
+  "setglobal bomb
+  set fileencodings=ucs-bom,utf-8,latin1
+endif
+
 
 " Uncomment the following to have Vim load indentation rules and plugins
 " according to the detected filetype.
