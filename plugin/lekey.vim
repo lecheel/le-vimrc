@@ -222,6 +222,10 @@ function! s:leDelLine()
     exec "norm dd"
 endfunction
 
+function! s:leDelWord()
+	exec "norm dw"
+endfunction
+
 function! s:leDired()
     exec "e! ."
 endfunction
@@ -533,6 +537,9 @@ noremap <silent> <C-X>\| <C-W>H
 noremap <silent> <C-X>1 :only<CR>
 noremap <silent> <C-X>2 <C-W>i
 noremap <silent> <C-X>3 <C-W>v
+
+noremap <silent> <C-K> dw
+inoremap <silent> <C-K> <C-O>dw
 
 "GitGutter Mapping
 noremap <silent> <C-X>n :GitGutterNextHunk<cr>
