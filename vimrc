@@ -46,6 +46,7 @@ filetype off		"required
 	Bundle 'int3/vim-extradite'
 	Bundle 'gregsexton/gitv'
 	Bundle 'mileszs/ack.vim'
+	Bundle 'jreybert/vimagit'
 	"Plugin 'justinmk/vim-sneak'
 	"Bundle 'garbas/vim-snipmate'
 	Bundle 'sjl/gundo.vim'
@@ -326,6 +327,7 @@ nmap <leader>gv :Gitv<CR>
 nmap <leader>br :Git branch<Space>
 nmap <leader>k  :bd<CR>
 nnoremap <leader>w <C-w>v<C-w>l
+nmap <leader>X  :Extradite<CR>
 
 if &diff
 nmap Ok dp
