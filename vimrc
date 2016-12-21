@@ -13,7 +13,7 @@ set nocompatible    	"required
 filetype off		"required
 
 " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
-" Setting up Vundle - the vim plugin bundler
+" Setting up Vundle - the vim plugin bundler :PluginInstall
     let iCanHazVundle=1
     let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
     if !filereadable(vundle_readme)
@@ -49,6 +49,7 @@ filetype off		"required
 	Bundle 'jreybert/vimagit'
 	"Plugin 'justinmk/vim-sneak'
 	"Bundle 'garbas/vim-snipmate'
+	Bundle 'fatih/vim-go'
 	Bundle 'sjl/gundo.vim'
 	Bundle 'NLKNguyen/papercolor-theme'
 	Bundle 'mrtazz/DoxygenToolkit.vim'
@@ -59,6 +60,19 @@ filetype off		"required
 	Bundle 'vim-multiple-cursors'
 	Bundle 'lervag/vimtex'
 	Bundle 'vim-scripts/taglist.vim'
+	Bundle 'ramele/agrep'
+	"JSON
+	"Bundle 'elzr/vim-json'
+	"for Python UltiSnip
+	"Bundle 'SirVer/ultisnips'
+	Bundle 'honza/vim-snippets'
+
+	"Bundle 'davidhalter/jedi'
+	
+	Bundle 'Shougo/neocomplete'
+	Bundle 'Shougo/neosnippet'
+	Bundle 'Shougo/neosnippet-snippets'
+
     "...All your other bundles...
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
@@ -140,6 +154,7 @@ endif
 "set mouse=a		" Enable mouse usage (all modes)
 set ignorecase incsearch
 set noshowmatch
+set t_RV=
 "set expandtab
 let loaded_matchparen = 1
 set t_Co=256
@@ -189,6 +204,7 @@ autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
 :set noshowmode
 
+
 let g:gitgutter_sign_added = '++'
 let g:gitgutter_sign_modified = 'M*'
 let g:gitgutter_sign_removed = '--'
@@ -196,6 +212,15 @@ let g:gitgutter_sign_modified_removed = '-*'
 let g:gitgutter_escape_grep = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+"for UtliSnip 
+let g:UltiSnipsExpandTrigger="<F12>"
+"let g:UltiSnipsJumpForwardTrigger="<c-n>"
+"let g:UltiSnipsJumpBackwardTrigger="<c-p>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
 
 " patch for cygwin powerline font --->
 " let g:airline_symbols = {}
@@ -218,6 +243,7 @@ autocmd User fugitive
   \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
 autocmd BufReadPost fugitive://* set bufhidden=delete
+au BufRead,BufNewfile *.smali set filetype=smali
 
 "CTAGS
 if filereadable("tags")
@@ -278,11 +304,13 @@ noremap ]7 7gt
 
 nnoremap <silent> <F9> :GitGutterToggle <cr>
 inoremap <silent> <F9> <Esc>:GitGutterToggle <cr>
-nmap <silent> <Leader>]h :GitGutterNextHunk<cr>
-nmap <silent> <Leader>[h :GitGutterPrevHunk<cr>
-nmap <silent> <Leader>hs :GitGutterStageHunk<cr>
-nmap <silent> <Leader>hr :GitGutterRevertHunk<cr>
-nmap <silent> <Leader>hp :GitGutterPreviewHunk<cr>
+
+nmap <silent> <Leader>+ :GitGutterNextHunk<cr>
+nmap <silent> <Leader>- :GitGutterPrevHunk<cr>
+
+nmap <silent> <Leader>vs :GitGutterStageHunk<cr>
+nmap <silent> <Leader>vr :GitGutterRevertHunk<cr>
+nmap <silent> <Leader>vp :GitGutterPreviewHunk<cr>
 nmap <silent> <Leader>n  :GitGutterNextHunk<cr>
 nmap <silent> <Leader>p  :GitGutterPrevHunk<cr>
 nmap <silent> <Leader>d  :GitGutterPreviewHunk<cr>

@@ -64,6 +64,12 @@ function! s:leGitGrep()
     exec 'silent! Ggrep ' . pattern . ' ' | :copen |redraw!|:cc
 endfunction
 
+function! s:TabSpace()
+	exec "set ts=4"
+	exec "set shiftwidth=4"
+	exec "set expandtab"
+endfunction
+
 
 function! s:FindOccurences(method)
     if a:method == "auto"
@@ -432,6 +438,12 @@ function! s:RemoveCtrlM()
 	normal `o
 endfunction
 
+function! s:ooo()
+	norm J
+	norm j
+endfunction
+
+
 function! s:BriefJumpMark()
     let mark = input("Jump to bookmark: ")
     if mark == ""
@@ -638,6 +650,8 @@ exec "inoremap <unique> <silent> " . legoto_Key . " <C-O>:call <SID>leGotoLine()
 exec "nnoremap <unique> <silent> " . leJump . " :call <SID>BriefJumpMark()<CR>"
 exec "inoremap <unique> <silent> " . leJump . " <C-O>:call <SID>BriefJumpMark()<CR>"
 command! -nargs=* Adb call s:adbRemove()
+command! -nargs=* Ts call s:TabSpace() 
+command! -nargs=* Ooo call s:ooo()
 command! -nargs=* RemoveCtrlM call s:RemoveCtrlM()
 command! -nargs=* Ggr call s:leGitGrep()
 
