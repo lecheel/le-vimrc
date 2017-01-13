@@ -73,6 +73,7 @@ filetype off		"required
 
 	"Bundle 'davidhalter/jedi'
         Bundle 'hecal3/vim-leader-guide'
+	Bundle 'Shougo/unite.vim'
 	
 	Bundle 'Shougo/neocomplete'
 	Bundle 'Shougo/neosnippet'
@@ -361,6 +362,12 @@ nmap <leader>br :Git branch<Space>
 nmap <leader>k  :bd<CR>
 nnoremap <leader>w <C-w>v<C-w>l
 nmap <leader>X  :Extradite<CR>
+nmap <leader>ff  :Unite file <CR>
+nmap <leader>fb  :Unite buffer <CR>
+nmap <leader>fr  :Unite file file_rec<CR>
+nmap <leader>fm  :Unite menu:file<CR>
+nmap <leader>;   <Plug>NERDCommenterInvert
+vmap <leader>;   <Plug>NERDCommenterInvert
 
 if &diff
 nmap Ok dp
@@ -378,13 +385,19 @@ nmap \| <C-W>H
 
 
 
-" guideKey for vim
-let g:all_key_map    = {}
-
-let g:leader_key_map = {}
-let g:all_key_map['<Leader>']         = g:leader_key_map
-let g:all_key_map['<Leader>']['name'] = '<Leader>'
-nmap <silent> <Leader> :<c-u>LeaderGuide '<Leader>'<CR>
-vmap <silent> <Leader> :<c-u>LeaderGuideVisual '<Leader>'<CR>
-map <leader>. <Plug>leaderguide-global
-
+"" guideKey for vim
+"let g:all_key_map    = {}
+"
+"let g:leader_key_map = {}
+"let g:all_key_map['<Leader>']         = g:leader_key_map
+"let g:all_key_map['<Leader>']['name'] = '<Leader>'
+"nmap <silent> <Leader> :<c-u>LeaderGuide '<Leader>'<CR>
+"vmap <silent> <Leader> :<c-u>LeaderGuideVisual '<Leader>'<CR>
+"map <leader>. <Plug>leaderguide-global
+"
+let g:unite_source_menu_menus = get(g:, 'unite_source_menu_menus',{})
+let g:unite_source_menu_menus.file ={'description' : '- file menu',}
+let g:unite_source_menu_menus.file.command_candidates = [
+    \['▷ Files    ⌘    ,ff','normal ,ff'], 
+    \['▷ Buffer   ⌘    ,fb','normal ,fb'], 
+    \]
