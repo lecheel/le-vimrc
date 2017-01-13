@@ -36,49 +36,19 @@ filetype off		"required
 	Bundle 'bling/vim-airline'
 	Bundle 'scrooloose/nerdtree'
 	Bundle 'scrooloose/nerdcommenter'
-	Bundle 'tomtom/tcomment_vim'
-	Bundle 'tomtom/tlib_vim'
 	Bundle 'tpope/vim-surround'
-	Bundle 'tpope/vim-unimpaired'
-	Bundle 'marcweber/vim-addon-mw-utils'
-	Bundle 'majutsushi/tagbar'
 	Bundle 'kien/rainbow_parentheses.vim'
 	Bundle 'rking/ag.vim'
 	Bundle 'int3/vim-extradite'
-	Bundle 'gregsexton/gitv'
 	Bundle 'mileszs/ack.vim'
-	Bundle 'jreybert/vimagit'
-	Bundle 'lambdalisue/vim-gita'
-	"Plugin 'justinmk/vim-sneak'
-	"Bundle 'garbas/vim-snipmate'
-	Bundle 'fatih/vim-go'
-	Bundle 'sjl/gundo.vim'
 	Bundle 'NLKNguyen/papercolor-theme'
-	Bundle 'mrtazz/DoxygenToolkit.vim'
-	Bundle 'ajh17/Spacegray.vim'
-	Bundle 'will133/vim-dirdiff'
 	Bundle 'chrisbra/Colorizer'
-	Bundle '1995parham/vim-tcpdump'
-	Bundle 'vim-multiple-cursors'
-	Bundle 'lervag/vimtex'
 	Bundle 'vim-scripts/taglist.vim'
 	Bundle 'ramele/agrep'
-	Bundle 'cartolari/vim-niji'
-    Bundle 'rust-lang/rust.vim'
-	"JSON
-	"Bundle 'elzr/vim-json'
-	"for Python UltiSnip
-	"Bundle 'SirVer/ultisnips'
-	Bundle 'honza/vim-snippets'
 
-	"Bundle 'davidhalter/jedi'
         Bundle 'hecal3/vim-leader-guide'
 	Bundle 'Shougo/unite.vim'
 	
-	Bundle 'Shougo/neocomplete'
-	Bundle 'Shougo/neosnippet'
-	Bundle 'Shougo/neosnippet-snippets'
-
     "...All your other bundles...
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
@@ -164,8 +134,8 @@ set t_RV=
 "set expandtab
 let loaded_matchparen = 1
 set t_Co=256
-set number
-set relativenumber
+"set number
+set norelativenumber
 set laststatus=2
 set noeb vb t_vb=
 set backspace=2
@@ -218,15 +188,6 @@ let g:gitgutter_sign_modified_removed = '-*'
 let g:gitgutter_escape_grep = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-
-"for UtliSnip 
-let g:UltiSnipsExpandTrigger="<F12>"
-"let g:UltiSnipsJumpForwardTrigger="<c-n>"
-"let g:UltiSnipsJumpBackwardTrigger="<c-p>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
 
 " patch for cygwin powerline font --->
 " let g:airline_symbols = {}
@@ -317,7 +278,7 @@ nmap <silent> <Leader>- :GitGutterPrevHunk<cr>
 nmap <silent> <Leader>vs :GitGutterStageHunk<cr>
 nmap <silent> <Leader>vr :GitGutterRevertHunk<cr>
 nmap <silent> <Leader>vp :GitGutterPreviewHunk<cr>
-nmap <silent> <Leader>n  :GitGutterNextHunk<cr>
+map <silent> <Leader>n  :GitGutterNextHunk<cr>
 nmap <silent> <Leader>p  :GitGutterPrevHunk<cr>
 nmap <silent> <Leader>d  :GitGutterPreviewHunk<cr>
 
@@ -350,6 +311,9 @@ nmap <silent> ,/ :nohlsearch<CR>
 
 
 command! -nargs=+ Ggs execute 'silent Ggrep!' <q-args>|cw|redraw!|cc
+"
+" for git operator
+"
 nmap <leader>gg :Ggs <C-R><C-W><CR>
 nmap <leader>gr :Ggr <CR>
 nmap <leader>gs :Gstatus <CR>
@@ -359,15 +323,17 @@ nmap <leader>gb :Git branch<Space>
 nmap <leader>gf :Extradite<CR>
 nmap <leader>gv :Gitv<CR>
 nmap <leader>br :Git branch<Space>
+nmap <leader>gx :Extradite<CR>
+
 nmap <leader>k  :bd<CR>
 nnoremap <leader>w <C-w>v<C-w>l
-nmap <leader>X  :Extradite<CR>
-nmap <leader>ff  :Unite file <CR>
-nmap <leader>fb  :Unite buffer <CR>
-nmap <leader>fr  :Unite file file_rec<CR>
-nmap <leader>fm  :Unite menu:file<CR>
-nmap <leader>;   <Plug>NERDCommenterInvert
-vmap <leader>;   <Plug>NERDCommenterInvert
+nmap <leader>x     <C-w>c
+nmap <leader>ff :Unite file <CR>
+nmap <leader>fb :Unite buffer <CR>
+nmap <leader>fr :Unite file file_rec<CR>
+nmap <leader>fm :Unite menu:file<CR>
+nmap <leader>;  <Plug>NERDCommenterInvert
+vmap <leader>;  <Plug>NERDCommenterInvert
 
 if &diff
 nmap Ok dp
