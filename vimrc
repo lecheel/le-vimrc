@@ -35,6 +35,7 @@ filetype off		"required
 	Bundle 'Raimondi/delimitMate'
 	Bundle 'bling/vim-airline'
 	Bundle 'scrooloose/nerdtree'
+	Bundle 'scrooloose/nerdcommenter'
 	Bundle 'tomtom/tcomment_vim'
 	Bundle 'tomtom/tlib_vim'
 	Bundle 'tpope/vim-surround'
@@ -47,6 +48,7 @@ filetype off		"required
 	Bundle 'gregsexton/gitv'
 	Bundle 'mileszs/ack.vim'
 	Bundle 'jreybert/vimagit'
+	Bundle 'lambdalisue/vim-gita'
 	"Plugin 'justinmk/vim-sneak'
 	"Bundle 'garbas/vim-snipmate'
 	Bundle 'fatih/vim-go'
@@ -61,6 +63,8 @@ filetype off		"required
 	Bundle 'lervag/vimtex'
 	Bundle 'vim-scripts/taglist.vim'
 	Bundle 'ramele/agrep'
+	Bundle 'cartolari/vim-niji'
+    Bundle 'rust-lang/rust.vim'
 	"JSON
 	"Bundle 'elzr/vim-json'
 	"for Python UltiSnip
@@ -68,6 +72,7 @@ filetype off		"required
 	Bundle 'honza/vim-snippets'
 
 	"Bundle 'davidhalter/jedi'
+        Bundle 'hecal3/vim-leader-guide'
 	
 	Bundle 'Shougo/neocomplete'
 	Bundle 'Shougo/neosnippet'
@@ -370,3 +375,16 @@ nmap Oj [c
 nmap <SPACE> <Plug>(easymotion-s)
 nmap s <Plug>(easymotion-s2)
 nmap \| <C-W>H
+
+
+
+" guideKey for vim
+let g:all_key_map    = {}
+
+let g:leader_key_map = {}
+let g:all_key_map['<Leader>']         = g:leader_key_map
+let g:all_key_map['<Leader>']['name'] = '<Leader>'
+nmap <silent> <Leader> :<c-u>LeaderGuide '<Leader>'<CR>
+vmap <silent> <Leader> :<c-u>LeaderGuideVisual '<Leader>'<CR>
+map <leader>. <Plug>leaderguide-global
+
