@@ -350,9 +350,17 @@ nmap s <Plug>(easymotion-s2)
 nmap \| <C-W>H
 
 
-let g:leaderGuide_default_group_name = "+group"
-let g:leaderGuide_map = {}
-let g:leaderGuide_map.g = {"name" : "git"}
+"let g:leaderGuide_default_group_name = "+group"
+let g:lmap = {}
+let g:lmap.b = {"name" : "+Buffers"}
+let g:lmap.c = {"name" : "+Comments"}
+let g:lmap.g = {"name" : "+git"}
+let g:lmap.s = {"name" : "+cScope"}
+let g:lmap.t = {"name" : "+Toggle"}
+let g:lmap.v = {"name" : "+gitGutter"}
+
+call leaderGuide#register_prefix_descriptions(",", "g:lmap")
+
 nmap <silent> <Leader> :<c-u>LeaderGuide '<Leader>'<CR>
 vmap <silent> <Leader> :<c-u>LeaderGuideVisual '<Leader>'<CR>
 "map <leader>. <Plug>leaderguide-global
