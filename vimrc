@@ -357,8 +357,8 @@ nmap \| <C-W>H
 "let g:leader_key_map = {}
 "let g:all_key_map['<Leader>']         = g:leader_key_map
 "let g:all_key_map['<Leader>']['name'] = '<Leader>'
-"nmap <silent> <Leader> :<c-u>LeaderGuide '<Leader>'<CR>
-"vmap <silent> <Leader> :<c-u>LeaderGuideVisual '<Leader>'<CR>
+nmap <silent> <Leader> :<c-u>LeaderGuide '<Leader>'<CR>
+vmap <silent> <Leader> :<c-u>LeaderGuideVisual '<Leader>'<CR>
 "map <leader>. <Plug>leaderguide-global
 "
 let g:unite_source_menu_menus = get(g:, 'unite_source_menu_menus',{})
