@@ -350,13 +350,9 @@ nmap s <Plug>(easymotion-s2)
 nmap \| <C-W>H
 
 
-
-"" guideKey for vim
-"let g:all_key_map    = {}
-"
-"let g:leader_key_map = {}
-"let g:all_key_map['<Leader>']         = g:leader_key_map
-"let g:all_key_map['<Leader>']['name'] = '<Leader>'
+let g:leaderGuide_default_group_name = "+group"
+let g:leaderGuide_map = {}
+let g:leaderGuide_map.g = {"name" : "git"}
 nmap <silent> <Leader> :<c-u>LeaderGuide '<Leader>'<CR>
 vmap <silent> <Leader> :<c-u>LeaderGuideVisual '<Leader>'<CR>
 "map <leader>. <Plug>leaderguide-global
