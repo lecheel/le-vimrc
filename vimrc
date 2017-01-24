@@ -43,12 +43,15 @@ filetype off		"required
 	Bundle 'mileszs/ack.vim'
 	Bundle 'NLKNguyen/papercolor-theme'
 	Bundle 'chrisbra/Colorizer'
+	Bundle 'sts10/vim-mustard'
 	Bundle 'vim-scripts/taglist.vim'
 	Bundle 'ramele/agrep'
 
         Bundle 'hecal3/vim-leader-guide'
 	Bundle 'Shougo/unite.vim'
-	
+	Bundle 'junegunn/vim-easy-align'
+	Bundle 'wincent/command-t'
+
     "...All your other bundles...
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
@@ -64,6 +67,8 @@ if has("syntax")
   syntax on
 endif
 
+
+
 " If using a dark background within the editing area and syntax highlighting
 " turn on this option as well
 set background=dark
@@ -76,7 +81,7 @@ endif
 
 "au FilterWritePre * if &diff | set t_Co=256 | set bg=dark | colorscheme peaksea | endif
 
-au BufRead,BufNewFile *.logcat set filetype=logcat 
+au BufRead,BufNewFile *.logcat set filetype=logcat
 au BufRead,BufNewFile *.grp set filetype=grp
 au BufRead,BufNewFile *.log set filetype=messages
 au BufRead,BufNewFile *.cr set filetype=c
@@ -152,7 +157,7 @@ if &diff
 else
     "colorscheme default
     colorscheme PaperColor
-endif  
+endif
 
 
 " Set K&R Style
@@ -175,11 +180,16 @@ autocmd FileType conf,fstab       let b:comment_leader = '# '
 autocmd FileType tex              let b:comment_leader = '% '
 autocmd FileType mail             let b:comment_leader = '> '
 autocmd FileType vim              let b:comment_leader = '" '
-
+"Remove Space on write
+autocmd BufWritePre * :%s/\s\+$//e
 autocmd Filetype java setlocal omnifunc=javacomplete#Complete
 
 :set noshowmode
 
+
+"easy-vim-algin gaip= ??
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)
 
 let g:gitgutter_sign_added = '++'
 let g:gitgutter_sign_modified = 'M*'
@@ -205,7 +215,7 @@ highlight Pmenu ctermfg=0 ctermbg=3
 highlight PmenuSel ctermfg=0 ctermbg=7
 
 
-autocmd User fugitive 
+autocmd User fugitive
   \ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
   \   nnoremap <buffer> .. :edit %:h<CR> |
   \ endif
@@ -260,14 +270,14 @@ let g:EasyGrepRecursive=1
 "tagbar mapping
 noremap ]= :tabnext<cr>
 noremap ]- :tabprev<cr>
-noremap ]` :tabnew 
-noremap ]1 1gt 
-noremap ]2 2gt 
-noremap ]3 3gt 
-noremap ]4 4gt 
-noremap ]5 5gt 
-noremap ]6 6gt 
-noremap ]7 7gt 
+noremap ]` :tabnew
+noremap ]1 1gt
+noremap ]2 2gt
+noremap ]3 3gt
+noremap ]4 4gt
+noremap ]5 5gt
+noremap ]6 6gt
+noremap ]7 7gt
 
 nnoremap <silent> <F9> :GitGutterToggle <cr>
 inoremap <silent> <F9> <Esc>:GitGutterToggle <cr>
@@ -290,7 +300,7 @@ inoremap <silent> <F1> <Esc>:NERDTreeToggle <cr>
 noremap <F4> :set hlsearch! hlsearch?<CR>
 set pastetoggle=<F5>
 
-nmap <F10> :TagbarToggle<CR> 
+nmap <F10> :TagbarToggle<CR>
 
 map <F3> :exec 'cs find d <C-R>=expand("<cword>")<CR>'<CR>
 map <F2> :exec 'cs find c <C-R>=expand("<cword>")<CR>'<CR>
@@ -308,7 +318,8 @@ noremap <leader>ii :call BundleRefresh()<CR>
 nmap <leader>l <Plug>(easymotion-lineanywhere)
 nmap <silent> ,/ :nohlsearch<CR>
 
-
+"Ability to cancel a search with Escape:
+nnoremap <silent> <Esc> :nohlsearch<Bar>:echo<CR>
 
 command! -nargs=+ Ggs execute 'silent Ggrep!' <q-args>|cw|redraw!|cc
 "
@@ -335,6 +346,12 @@ nmap <leader>fm :Unite menu:file<CR>
 nmap <leader>;  <Plug>NERDCommenterInvert
 vmap <leader>;  <Plug>NERDCommenterInvert
 
+"
+" T-command
+"
+"
+set wildignore+=*.log,*.sql,*.cache
+
 if &diff
 nmap Ok dp
 nmap Om do
@@ -342,8 +359,9 @@ nmap Oo ]c
 nmap Oj [c
 endif
 
-nmap Oo ]c
-nmap Oj [c
+" kp-plus /kp-substract
+nmap Ok :GitGutterNextHunk<cr>
+nmap Om :GitGutterPrevHunk<cr>
 
 nmap <SPACE> <Plug>(easymotion-s)
 nmap s <Plug>(easymotion-s2)
@@ -368,6 +386,8 @@ vmap <silent> <Leader> :<c-u>LeaderGuideVisual '<Leader>'<CR>
 let g:unite_source_menu_menus = get(g:, 'unite_source_menu_menus',{})
 let g:unite_source_menu_menus.file ={'description' : '- file menu',}
 let g:unite_source_menu_menus.file.command_candidates = [
-    \['▷ Files    ⌘    ,ff','normal ,ff'], 
-    \['▷ Buffer   ⌘    ,fb','normal ,fb'], 
+    \['▷ Files    ⌘    ,ff','normal ,ff'],
+    \['▷ Buffer   ⌘    ,fb','normal ,fb'],
     \]
+
+let NERDTreeIgnore=['\.DS_Store', '\~$', '\.swp']
