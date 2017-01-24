@@ -51,6 +51,7 @@ filetype off		"required
 	Bundle 'Shougo/unite.vim'
 	Bundle 'junegunn/vim-easy-align'
 	Bundle 'majutsushi/tagbar'
+	Bundle 'mhinz/vim-startify'
 
     "...All your other bundles...
     if iCanHazVundle == 0
@@ -148,6 +149,7 @@ set nobackup
 set noswapfile
 set nowrapscan
 
+map q <Nop>
 let mapleader=","
 
 colorscheme PaperColor
@@ -167,8 +169,6 @@ set shiftwidth=4
 
 "vimgrep
 "map <C-F>viwy:vimgrep /\<"\>/ **/*.[ch]pp
-"noremap <F12> :cnext<CR>
-
 " Source a global configuration file if available
 if filereadable("/etc/vim/vimrc.local")
   source /etc/vim/vimrc.local
@@ -306,9 +306,11 @@ set pastetoggle=<F5>
 
 nmap <F10> :TagbarToggle<CR>
 
-map <F3> :exec 'cs find d <C-R>=expand("<cword>")<CR>'<CR>
-map <F2> :exec 'cs find c <C-R>=expand("<cword>")<CR>'<CR>
-nmap <leader>so :vimgrep <C-R><C-W> *<CR>
+"map <F3> :exec 'cs find d <C-R>=expand("<cword>")<CR>'<CR>
+"map <F2> :exec 'cs find c <C-R>=expand("<cword>")<CR>'<CR>
+map <F3> :w<cr>
+inoremap <F3> <C-O>:w<cr>
+nmap K :grep! <C-R><C-W> *<CR>:cc<CR>
 
 "
 " Toggle .....
@@ -318,6 +320,7 @@ noremap <leader>th :set hlsearch! hlsearch?<CR>
 noremap <leader>tt :TagbarToggle<cr>
 noremap <leader>tl :set nonu relativenumber!<cr>
 noremap <leader>ii :call BundleRefresh()<CR>
+noremap <leader>tf :call ToggleF12()<CR>
 
 nmap <leader>l <Plug>(easymotion-lineanywhere)
 nmap <silent> ,/ :nohlsearch<CR>
@@ -347,6 +350,7 @@ nmap <leader>ff :Unite file <CR>
 nmap <leader>fb :Unite buffer <CR>
 nmap <leader>fr :Unite file file_rec<CR>
 nmap <leader>fm :Unite menu:file<CR>
+nmap <leader>fg :Agrep -r <C-R><C-W>
 nmap <leader>;  <Plug>NERDCommenterInvert
 vmap <leader>;  <Plug>NERDCommenterInvert
 
@@ -367,10 +371,52 @@ endif
 nmap Ok :GitGutterNextHunk<cr>
 nmap Om :GitGutterPrevHunk<cr>
 
+"
+"check quickfix window
+"
+
+let g:fn12 = 1
+" Check quickfix window is available
+function QFwinnr()
+    let i=1
+    while i <= winnr('$')
+	if getbufvar(winbufnr(i), '&buftype') == 'quickfix'
+	    return i
+	endif
+	let i += 1
+    endwhile
+    return 0
+endfunction
+
+"
+" Toggle cn/cp <---> Anext/Aprev
+"
+noremap <F12> :cnext<Cr>
+inoremap <F12> <C-O>:cnext<CR>
+nmap <S-F12> :cprev<CR>
+inoremap <S-F12> <C-O>:cprev<CR>
+
+function! ToggleF12()
+    if (g:fn12 == 1)
+	noremap <F12> :cnext<Cr>
+	inoremap <F12> <C-O>:cnext<CR>
+	nmap <S-F12> :cprev<CR>
+	inoremap <S-F12> <C-O>:cprev<CR>
+	let g:fn12 = 0
+	echo "cnext/cpnext"
+    else
+	noremap <F12> :Anext<Cr>
+	inoremap <F12> <C-O>:Anext<CR>
+	nmap <S-F12> :Aprev<CR>
+	inoremap <S-F12> <C-O>:Aprev<CR>
+	let g:fn12 = 1
+	echo "Anext/Aprex"
+    endif
+endfunction
+
 nmap <SPACE> <Plug>(easymotion-s)
 nmap s <Plug>(easymotion-s2)
 nmap \| <C-W>H
-
 
 "let g:leaderGuide_default_group_name = "+group"
 let g:lmap = {}
@@ -379,6 +425,7 @@ let g:lmap.c = {"name" : "+Comments"}
 let g:lmap.g = {"name" : "+git"}
 let g:lmap.s = {"name" : "+cScope"}
 let g:lmap.t = {"name" : "+Toggle"}
+let g:lmap.f = {"name" : "+File"}
 let g:lmap.h = {"name" : "+Hunk gitGutter"}
 
 call leaderGuide#register_prefix_descriptions(",", "g:lmap")
