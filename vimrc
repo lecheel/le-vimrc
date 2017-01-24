@@ -50,7 +50,7 @@ filetype off		"required
         Bundle 'hecal3/vim-leader-guide'
 	Bundle 'Shougo/unite.vim'
 	Bundle 'junegunn/vim-easy-align'
-	Bundle 'wincent/command-t'
+	Bundle 'majutsushi/tagbar'
 
     "...All your other bundles...
     if iCanHazVundle == 0
@@ -285,10 +285,14 @@ inoremap <silent> <F9> <Esc>:GitGutterToggle <cr>
 nmap <silent> <Leader>+ :GitGutterNextHunk<cr>
 nmap <silent> <Leader>- :GitGutterPrevHunk<cr>
 
-nmap <silent> <Leader>vs :GitGutterStageHunk<cr>
-nmap <silent> <Leader>vr :GitGutterRevertHunk<cr>
-nmap <silent> <Leader>vp :GitGutterPreviewHunk<cr>
-map <silent> <Leader>n  :GitGutterNextHunk<cr>
+nmap <silent> <Leader>hs :GitGutterStageHunk<cr>
+nmap <silent> <Leader>hr :GitGutterUndoHunk<cr>
+nmap <silent> <Leader>hu :GitGutterUndoHunk<cr>
+nmap <silent> <Leader>hv :GitGutterPreviewHunk<cr>
+nmap <silent> <Leader>hd :GitGutterPreviewHunk<cr>
+nmap <silent> <Leader>hp :GitGutterPrevHunk<cr>
+nmap <silent> <Leader>hn :GitGutterNextHunk<cr>
+nmap <silent> <Leader>n  :GitGutterNextHunk<cr>
 nmap <silent> <Leader>p  :GitGutterPrevHunk<cr>
 nmap <silent> <Leader>d  :GitGutterPreviewHunk<cr>
 
@@ -375,7 +379,7 @@ let g:lmap.c = {"name" : "+Comments"}
 let g:lmap.g = {"name" : "+git"}
 let g:lmap.s = {"name" : "+cScope"}
 let g:lmap.t = {"name" : "+Toggle"}
-let g:lmap.v = {"name" : "+gitGutter"}
+let g:lmap.h = {"name" : "+Hunk gitGutter"}
 
 call leaderGuide#register_prefix_descriptions(",", "g:lmap")
 
