@@ -12,6 +12,8 @@
 set nocompatible    	"required
 filetype off		"required
 
+set viminfo='100,n$HOME/.vim/files/info/viminfo'
+
 " http://www.erikzaadi.com/2012/03/19/auto-installing-vundle-from-your-vimrc/
 " Setting up Vundle - the vim plugin bundler :PluginInstall
     let iCanHazVundle=1
@@ -45,13 +47,15 @@ filetype off		"required
 	Bundle 'chrisbra/Colorizer'
 	Bundle 'sts10/vim-mustard'
 	Bundle 'vim-scripts/taglist.vim'
-	Bundle 'ramele/agrep'
+"	Bundle 'ramele/agrep'
+	Bundle 'vim-scripts/AnsiEsc.vim'
 
         Bundle 'hecal3/vim-leader-guide'
 	Bundle 'Shougo/unite.vim'
 	Bundle 'junegunn/vim-easy-align'
 	Bundle 'majutsushi/tagbar'
 	Bundle 'mhinz/vim-startify'
+	Bundle 'wincent/command-t'
 
     "...All your other bundles...
     if iCanHazVundle == 0
@@ -351,6 +355,8 @@ nmap <leader>fb :Unite buffer <CR>
 nmap <leader>fr :Unite file file_rec<CR>
 nmap <leader>fm :Unite menu:file<CR>
 nmap <leader>fg :Agrep -r <C-R><C-W>
+nmap <leader>fc :CommandT<CR>
+nmap <leader>.  :CommandT<CR>
 nmap <leader>;  <Plug>NERDCommenterInvert
 vmap <leader>;  <Plug>NERDCommenterInvert
 
