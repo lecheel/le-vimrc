@@ -43,10 +43,13 @@ set viminfo='100,n$HOME/.vim/files/info/viminfo'
 	Bundle 'rking/ag.vim'
 	Bundle 'int3/vim-extradite'
 	Bundle 'mileszs/ack.vim'
+	Bundle 'kien/ctrlp.vim'
 	Bundle 'NLKNguyen/papercolor-theme'
 	Bundle 'chrisbra/Colorizer'
 	Bundle 'sts10/vim-mustard'
 	Bundle 'vim-scripts/taglist.vim'
+	Bundle 'burnettk/vim-angular'
+	Bundle 'digitaltoad/vim-pug'
 "	Bundle 'ramele/agrep'
 	Bundle 'vim-scripts/AnsiEsc.vim'
 
@@ -95,6 +98,9 @@ au QuickFixCmdPost *grep* cwindow
 au Filetype python set expandtab
 au Filetype make set expandtab
 au Filetype python set ts=4 sw=4 et
+au Filetype pug set ts=2 sw=2 et
+au FileType javascript setlocal expandtab sw=2 ts=2 sts=2
+au BufNewFile,BufReadPost *.jade set filetype=pug
 
 " in makefiles, don't expand tabs to spaces, since actual tab characters are
 " " needed, and have indentation at 8 chars to be sure that all indents are
@@ -144,8 +150,8 @@ set t_RV=
 "set expandtab
 let loaded_matchparen = 1
 set t_Co=256
-"set number
-set norelativenumber
+set number
+set rnu relativenumber
 set laststatus=2
 set noeb vb t_vb=
 set backspace=2
@@ -202,6 +208,7 @@ let g:gitgutter_sign_modified_removed = '-*'
 let g:gitgutter_escape_grep = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
 
 " patch for cygwin powerline font --->
 " let g:airline_symbols = {}
