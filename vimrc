@@ -100,7 +100,7 @@ au Filetype make set expandtab
 au Filetype python set ts=4 sw=4 et
 au Filetype pug set ts=2 sw=2 et
 au FileType javascript setlocal expandtab sw=2 ts=2 sts=2
-au BufNewFile,BufReadPost *.jade set filetype=pug
+au BufNewFile,BufReadPost *.jade *.pug set filetype=pug
 
 " in makefiles, don't expand tabs to spaces, since actual tab characters are
 " " needed, and have indentation at 8 chars to be sure that all indents are
