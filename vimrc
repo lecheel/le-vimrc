@@ -9,6 +9,9 @@
 " make changes after sourcing debian.vim since it alters the value of the
 " 'compatible' option.
 
+" some tips for python
+"https://realpython.com/vim-and-python-a-match-made-in-heaven/
+
 set nocompatible    	"required
 filetype off		"required
 
@@ -30,12 +33,13 @@ set viminfo='100,n$HOME/.vim/files/info/viminfo'
     "Add your bundles here
 	" original repos on github
 	Bundle 'Lokaltog/vim-easymotion'
+	Bundle 'JuliaEditorSupport/julia-vim'
 	Bundle 'airblade/vim-gitgutter'
 	Bundle 'jlanzarotta/bufexplorer'
 	Bundle 'tpope/vim-fugitive'
 	Bundle 'tpope/vim-markdown'
 	Bundle 'Raimondi/delimitMate'
-	Bundle 'bling/vim-airline'
+	Bundle 'itchyny/lightline.vim'
 	Bundle 'scrooloose/nerdtree'
 	Bundle 'scrooloose/nerdcommenter'
 	Bundle 'tpope/vim-surround'
@@ -52,6 +56,9 @@ set viminfo='100,n$HOME/.vim/files/info/viminfo'
 	Bundle 'digitaltoad/vim-pug'
 "	Bundle 'ramele/agrep'
 	Bundle 'vim-scripts/AnsiEsc.vim'
+	Bundle 'leafgarland/typescript-vim'
+	Bundle 'vim-scripts/indentpython.vim'
+	Bundle 'nvie/vim-flake8'
 
         Bundle 'hecal3/vim-leader-guide'
 	Bundle 'Shougo/unite.vim'
@@ -89,15 +96,17 @@ endif
 
 "au FilterWritePre * if &diff | set t_Co=256 | set bg=dark | colorscheme peaksea | endif
 
+
+autocmd FileType make set expandtab shiftwidth=4 softtabstop=0
+
 au BufRead,BufNewFile *.logcat set filetype=logcat
 au BufRead,BufNewFile *.grp set filetype=grp
 au BufRead,BufNewFile *.log set filetype=messages
 au BufRead,BufNewFile *.cr set filetype=c
 au BufNewFile,BufReadPost *.md set filetype=markdown
 au QuickFixCmdPost *grep* cwindow
-au Filetype python set expandtab
+autocmd BufEnter *.py set ai sw=4 ts=4 sta et fo=croql
 au Filetype make set expandtab
-au Filetype python set ts=4 sw=4 et
 au Filetype pug set ts=2 sw=2 et
 au FileType javascript setlocal expandtab sw=2 ts=2 sts=2
 au BufNewFile,BufReadPost *.jade set filetype=pug
@@ -106,7 +115,21 @@ au BufNewFile,BufReadPost *.jade set filetype=pug
 " " needed, and have indentation at 8 chars to be sure that all indents are
 " tabs
 " " (despite the mappings later):
-autocmd FileType make set noexpandtab shiftwidth=8 softtabstop=0
+
+" PEP8 indent standard for python
+au BufNewFile,BufRead *.py
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+highlight BadWhitespace ctermbg=red guibg=darkred
+au BufRead,BufNewFile *.py match BadWhitespace /\s\+$/
+let python_highlight_all=1
+
 
 " ack
 "let g:ackprg='ack-grep -H --nocolor --nogroup --column'
@@ -175,7 +198,7 @@ endif
 " Set K&R Style
 "set cindent
 "set equalprg=astyle
-set shiftwidth=4
+"set shiftwidth=4
 
 "vimgrep
 "map <C-F>viwy:vimgrep /\<"\>/ **/*.[ch]pp
@@ -209,17 +232,6 @@ let g:gitgutter_escape_grep = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 
-
-" patch for cygwin powerline font --->
-" let g:airline_symbols = {}
-" let g:airline_left_sep = "\u2b80" "use double quotes here
-" let g:airline_left_alt_sep = "\u2b81"
-" let g:airline_right_sep = "\u2b82"
-" let g:airline_right_alt_sep = "\u2b83"
-" let g:airline_symbols.branch = "\u2b60"
-" let g:airline_symbols.readonly = "\u2b64"
-" let g:airline_symbols.linenr = "\u2b61"
-" <-------- endof cygwin
 
 "highlight clear SignColumn
 highlight Pmenu ctermfg=0 ctermbg=3
@@ -312,6 +324,12 @@ nmap <silent> <Leader>d  :GitGutterPreviewHunk<cr>
 nnoremap <silent> <F1> :NERDTreeToggle <cr>
 inoremap <silent> <F1> <Esc>:NERDTreeToggle <cr>
 
+nnoremap <silent> <F2> :only <cr>
+inoremap <silent> <F2> <Esc>:only <cr>
+
+nnoremap <silent> <F3> :Gdiff <cr>
+inoremap <silent> <F3> <Esc>:Gdiff <cr>
+
 noremap <F4> :set hlsearch! hlsearch?<CR>
 set pastetoggle=<F5>
 
@@ -319,8 +337,8 @@ nmap <F10> :TagbarToggle<CR>
 
 "map <F3> :exec 'cs find d <C-R>=expand("<cword>")<CR>'<CR>
 "map <F2> :exec 'cs find c <C-R>=expand("<cword>")<CR>'<CR>
-map <F3> :w<cr>
-inoremap <F3> <C-O>:w<cr>
+"map <F3> :w<cr>
+"inoremap <F3> <C-O>:w<cr>
 nmap K :grep! <C-R><C-W> *<CR>:cc<CR>
 
 "
@@ -347,6 +365,7 @@ nmap <leader>gg :Ggs <C-R><C-W><CR>
 nmap <leader>gr :Ggr <CR>
 nmap <leader>gs :Gstatus <CR>
 nmap <leader>gd :Gdiff <CR>
+nmap <leader>go :Gitonly<CR>
 nmap <leader>gl :Glog %
 nmap <leader>gb :Git branch<Space>
 nmap <leader>gf :Extradite<CR>

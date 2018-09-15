@@ -9,21 +9,21 @@
 " ---------- B r i e f E X  l i k e -----------------------------------
 "-----------------------------------------------------------------------
 if !exists("vim_mask")
-    if $bmask == ""   
+    if $bmask == ""
 	let g:vim_mask = '*'
-    else 
+    else
 	let g:vim_mask = $bmask
     endif
-endif	
+endif
 
 
 function! s:UnderOccurences()
     let s:skip = 0
-    try     
+    try
 	exec "normal [I"
     catch /^Vim(\a\+):E349:/
 	echo v:exception
-	let s:skip = 1   
+	let s:skip = 1
     endtry
     if s:skip == 0
 	let nr = input("Which one: ")
@@ -42,7 +42,7 @@ function! s:leOccur()
 	if pattern ==""
 	    echo "Cancelled.!"
 	    return
-	endif  
+	endif
     endif
     exec 'let @/ = "'.pattern.'"'
     exec 'vimgrep ' . pattern . ' ' . expand('%') | :copen |:cc
@@ -57,7 +57,7 @@ function! s:leGitGrep()
 	if pattern ==""
 	    echo "Cancelled.!"
 	    return
-	endif  
+	endif
     endif
     let pat = expand("<cword>")
     exec 'let @/ = "'.pattern.'"'
@@ -80,15 +80,15 @@ function! s:FindOccurences(method)
 	    if pattern ==""
 		echo "Cancelled.!"
 		return
-	    endif  
+	    endif
 	endif
-    else 
+    else
 	let pattern = input("Prompt Find: ")
 	if pattern == ""
 	    echo "Cancelled.!"
 	    return
 	endif
-    endif   
+    endif
     let s:skip = 0
     try
 	exec "ilist! /" . pattern
@@ -103,7 +103,7 @@ function! s:FindOccurences(method)
 	    return
 	endif
 	try
-	    exec "ijump! " . nr . "/".pattern."/" 
+	    exec "ijump! " . nr . "/".pattern."/"
 	catch /^Vim(\a\+):E387:/
 	    echo "BAD :-( ---%<---"
 	endtry
@@ -144,11 +144,11 @@ function! s:leJumpMark()
 	return
     endif
 
-    try     
+    try
 	exec "normal `".mark
-    catch /^Vim(\a\+):E20:/  
-	echo "set BookMark m(c-z) first, empty for BookMark(".mark.")" 
-    endtry 
+    catch /^Vim(\a\+):E20:/
+	echo "set BookMark m(c-z) first, empty for BookMark(".mark.")"
+    endtry
 endfunction
 
 function! s:leGotoLine()
@@ -169,7 +169,7 @@ function! s:leReplace()
 	let s:lePAT = pat
 	if s:lePAT == ""
 	    return
-	endif  
+	endif
     endif
     let s:leREP = input("Replace (" . s:lePAT . ") with: ")
     exec '%s/' . s:lePAT . '/' . s:leREP . '/gc'
@@ -177,9 +177,9 @@ function! s:leReplace()
 endfunction
 
 " from http://www.vim.org/tips/tip.php?tip_id=79 and modified
-function! s:ShowFunc(sort) 
-    let gf_s = &grepformat 
-    let gp_s = &grepprg 
+function! s:ShowFunc(sort)
+    let gf_s = &grepformat
+    let gp_s = &grepprg
     if ( &filetype == "c" || &filetype == "php" || &filetype == "python" ||
 		\ &filetype == "sh" )
 	let &grepformat='%*\k%*\sfunction%*\s%l%*\s%f %m'
@@ -190,14 +190,14 @@ function! s:ShowFunc(sort)
     elseif ( &filetype == "vim" )
 	let &grepformat='%*\k%*\sfunction%*\s%l%*\s%f %m'
 	let &grepprg = 'ctags -x --vim-types=f --language-force=vim --sort='.a:sort
-    endif 
-    if (&readonly == 0) | update | endif 
-    silent! grep % 
-    cwindow 10 
-    redraw   
+    endif
+    if (&readonly == 0) | update | endif
+    silent! grep %
+    cwindow 10
+    redraw
     let &grepformat = gf_s
-    let &grepprg = gp_s 
-endfunction  
+    let &grepprg = gp_s
+endfunction
 
 function! s:BufferNext()
     exec "bnext!"
@@ -255,7 +255,7 @@ function! s:leFind()
     let g:pat = expand("<cword>")
     let @" = g:pat
 "    call inputrestore()
-    exec 'let @a ="' . g:pat .'"'       
+    exec 'let @a ="' . g:pat .'"'
     exec 'let @/ ="' . g:pat .'"'
     exec ":stopinsert"
     echo "<".g:pat."> Marked!! n/N for repeat search CTRL-Y for yank"
@@ -265,26 +265,26 @@ function! s:leTAG()
 "    call inputsave()
     let g:pat = expand("<cword>")
     if $TAGFILE != ""
-	exec 'set tags='.$TAGFILE.';'	
+	exec 'set tags='.$TAGFILE.';'
     endif
-"    exec 'tselect ' . g:pat 
-    exec 'tjump ' . g:pat 
+"    exec 'tselect ' . g:pat
+    exec 'tjump ' . g:pat
 endfunction
 
 function! s:leTAB(direction)
-    let col = col('.') - 1        
+    let col = col('.') - 1
     if !col || getline('.')[col -1] !~ '\k'
 	return "\<tab>"
-    elseif "forward" == a:direction    
+    elseif "forward" == a:direction
 	return "\<c-p>"
-    endif 
+    endif
 endfunction!
 
 function! TabCompletion()
     if mapcheck("\<tab>", "i") != ""
 	:iunmap <tab>
 	echo "TAB completion off"
-    else 
+    else
 	:imap <tab> <c-p>
 	echo "TAB completion on"
     endif
@@ -301,7 +301,7 @@ function! s:leSave()
 		return
 	    endif
 	    execute "write " . fname
-	endif  
+	endif
     else
 	write!
     endif
@@ -311,7 +311,7 @@ function! s:levimgrep()
     " No argument supplied. Get the identifier and file list from user
     let pattern = input("vimGrep for pattern: ", expand("<cword>"))
     if pattern == ""
-	echo "Cancelled."    
+	echo "Cancelled."
 	return
     endif
 
@@ -324,7 +324,7 @@ function! s:levimgrep()
 
     let filenames = input("vimGrep in files: ", g:vim_mask)
     if filenames == ""
-	echo "Cancelled."    
+	echo "Cancelled."
 	return
     endif
     if filenames == "*"
@@ -334,7 +334,7 @@ function! s:levimgrep()
 	endif
     endif
 
-    exec "vimgrep /" . pattern . "/ **/" . filenames 
+    exec "vimgrep /" . pattern . "/ **/" . filenames
 
 endfunction
 
@@ -381,7 +381,7 @@ function! s:adbRemove()
     exe "g/.*ThrottleService.*/d"
     exe "1"
     exe "g/.*Resources.*/d"
-    exe "1"    
+    exe "1"
     exe "g/.*AwesomePlayer.*/d"
     exe "1"
     exe "g/.*wpa_supplicant.*/d"
@@ -394,7 +394,7 @@ function! s:adbRemove()
 
     exe "g/.*AudioFlinger.*/d"
     exe "1"
-     
+
     exe "g/.*DisplayEventReceiver.*/d"
     exe "1"
 
@@ -470,6 +470,13 @@ function! s:BriefJumpMark()
     endif
 endfunction
 
+
+function! s:gitonly()
+	exec "only"
+	exec "bn"
+
+endfunction
+
 function! s:_cdo(args, type)
   let no_confirmation_needed = matchstr(a:args,'^/c') == ""
   let command = substitute(a:args, '^/c', '', '')
@@ -509,9 +516,9 @@ if has("gui_running")
     let leinfo_Key   = "<M-f>"
     let leRepl_Key   = "<M-t>"
     let leMarkLn     = "<M-l>"
-else	
-    let Occur_Key    = "o" 
-    let lequit_Key   = "q" 
+else
+    let Occur_Key    = "o"
+    let lequit_Key   = "q"
     let legoto_Key   = "g"
     let lesave_Key   = "w"
     let leclose_Key  = "x"
@@ -520,9 +527,9 @@ else
     let leedit_Key   = "e"
     let lewmark_Key  = "y"
     let ledelln_Key  = "d"
-    let bn_Key       = "." 
+    let bn_Key       = "."
     let bp_Key       = ","
-    let bn0_Key      = "=" 
+    let bn0_Key      = "="
     let bp0_Key      = "-"
     let lecomp_Key   = "/"
     let lebuff_Key   = "b"
@@ -575,7 +582,7 @@ inoremap <silent> <ESC>/ <C-P>
 nmap 0 :ts<CR>
 nmap ' :cn<CR>
 nmap ; :cp<CR>
-" hint for no-map usage 
+" hint for no-map usage
 "
 " replace %s/foo/xxx/gc    <A-t>
 "
@@ -649,11 +656,15 @@ exec "inoremap <unique> <silent> " . legoto_Key . " <C-O>:call <SID>leGotoLine()
 
 exec "nnoremap <unique> <silent> " . leJump . " :call <SID>BriefJumpMark()<CR>"
 exec "inoremap <unique> <silent> " . leJump . " <C-O>:call <SID>BriefJumpMark()<CR>"
+
+
+
 command! -nargs=* Adb call s:adbRemove()
-command! -nargs=* Ts call s:TabSpace() 
+command! -nargs=* Ts call s:TabSpace()
 command! -nargs=* Ooo call s:ooo()
 command! -nargs=* RemoveCtrlM call s:RemoveCtrlM()
 command! -nargs=* Ggr call s:leGitGrep()
+command! -nargs=* Gitonly call s:gitonly()
 
 " vim:sw=4:tabstop=4
 
