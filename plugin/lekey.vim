@@ -506,16 +506,20 @@ if has("gui_running")
     let lesave_Key   = '<M-w>'
     let leclose_Key  = '<M-x>'
     let lefind_Key   = '<M-s>'
+    let lefile_Key   = "<M-f>"
     let leedit_Key   = '<M-e>'
     let lewmark_Key  = '<M-y>'
     let ledelln_Key  = '<M-d>'
     let bn_Key       = '<M-.>'
     let bp_Key       = '<M-,>'
+    let bn0_Key      = "<M-=>"
+    let bp0_Key      = "<M-->"
     let lecomp_Key   = "<M-/>"
     let lebuff_Key   = "<M-b>"
     let leinfo_Key   = "<M-f>"
     let leRepl_Key   = "<M-t>"
     let leMarkLn     = "<M-l>"
+    let leJump       = "<M-j>"
 else
     let Occur_Key    = "o"
     let lequit_Key   = "q"
