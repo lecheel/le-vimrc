@@ -126,6 +126,17 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix
 
+au BufNewFile,BufRead *.go
+    \ set tabstop=4 |
+    \ set softtabstop=4 |
+    \ set shiftwidth=4 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+
+
 highlight BadWhitespace ctermbg=red guibg=darkred
 au BufRead,BufNewFile *.py match BadWhitespace /\s\+$/
 let python_highlight_all=1
@@ -170,6 +181,7 @@ endif
 set ignorecase incsearch
 set noshowmatch
 set t_RV=
+set ts=4 sw=4
 "set expandtab
 let loaded_matchparen = 1
 set t_Co=256
@@ -350,6 +362,7 @@ noremap <leader>tt :TagbarToggle<cr>
 noremap <leader>tl :set nonu relativenumber!<cr>
 noremap <leader>ii :call BundleRefresh()<CR>
 noremap <leader>tf :call ToggleF12()<CR>
+noremap <leader>tz :call ToggleZip()<CR>
 
 nmap <leader>l <Plug>(easymotion-lineanywhere)
 nmap <silent> ,/ :nohlsearch<CR>
@@ -427,6 +440,18 @@ noremap <F12> :cnext<Cr>
 inoremap <F12> <C-O>:cnext<CR>
 nmap <S-F12> :cprev<CR>
 inoremap <S-F12> <C-O>:cprev<CR>
+
+let g:fnZip = 0
+function! ToggleZip()
+	if (g:fnZip == 1)
+		let g:fnZip = 0
+		set nofoldenable
+	else
+		set foldenable
+	    set foldmethod=indent foldlevel=1 foldclose=all
+	    let g:fnZip = 1
+	endif
+endfunction
 
 function! ToggleF12()
     if (g:fn12 == 1)
